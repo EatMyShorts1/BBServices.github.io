@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>User Login</title>
+  <style>
+    /* CSS styles for the modernized login form */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f1f1f1;
+      background-image: url("spongebob-squarepants-battle-for-bikini-bottom-rehydrated-review-i-need-it_feature.jpg");
+    }
+
+    .container {
+      width: 400px;
+      /* Increased width */
+      padding: 40px;
+      /* Increased padding */
+      border-radius: 5px;
+      text-align: center;
+      background-color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h2 {
+      margin-bottom: 20px;
+      color: #333333;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333333;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      color: #333333;
+      background-color: #f8f8f8;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4285f4;
+      color: #ffffff;
+      border: none;
+      border-radius: 3px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-group button:hover {
+      background-color: #3367d6;
+    }
+
+    .home-button {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4285f4;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .home-button:hover {
+      background-color: #3367d6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Administration Login</h2>
+    <form id="loginForm" method="POST">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Next</button>
+      </div>
+    </form>
+    <a class="home-button" href="home.html">Press here to go home</a>
+  </div>
+
+  <script>
+    // Credentials registry
+    var credentials = [
+      { username: "Jackson", password: "Jackson" },
+      { username: "user2", password: "pass2" },
+      { username: "user3", password: "pass3" }
+    ];
+
+    var loginAttempts = 0; // Track the number of login attempts
+
+    // Function to validate the login credentials
+    function validateLogin(event) {
+      event.preventDefault();
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      var validCredentials = false;
+      for (var i = 0; i < credentials.length; i++) {
+        if (username === credentials[i].username && password === credentials[i].password) {
+          validCredentials = true;
+          break;
+        }
+      }
+
+      if (validCredentials) {
+        // Check if the user has logged in within the past 30 minutes
+        var lastLoginTime = sessionStorage.getItem("lastLoginTime");
+        if (lastLoginTime && Date.now() - lastLoginTime < 30 * 60 * 1000) {
+          window.location.href = "yes.html"; // Redirect to yes.html
+        } else {
+          sessionStorage.setItem("lastLoginTime", Date.now());
+          // Proceed with the regular login flow
+          window.location.href = "yes.html"; // Redirect to yes.html
+        }
+      } else {
+        loginAttempts++;
+
+        if (loginAttempts === 3) {
+          var audio = new Audio("C:\\madagascardatabase\\Alarm.mp3");
+          audio.play();
+          alert("You have exceeded the maximum number of login attempts. Please try again later.");
+        } else {
+          alert("Invalid username or password. Please try again.");
+        }
+      }
+    }
+
+    // Attach the login form validation to the form submission
+    document.getElementById("loginForm").addEventListener("submit", validateLogin);
+  </script>
+</body>
+
+</html>

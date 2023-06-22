@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <style>
+        /* CSS styles for the navigation menu */
+        .container {
+            text-align: center;
+            margin-top: 50px;
+            padding: 10px 0;
+            /* Add padding for spacing */
+        }
+
+        .navigation-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: auto;
+            background-color: #4285f4;
+            /* Change the background color to a darker grey */
+            z-index: 2;
+            padding: 10px 20px;
+            user-select: none;
+            /* Prevent text selection in the navigation menu */
+            border-bottom-left-radius: 10px;
+        }
+
+        .navigation-menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+        }
+
+        .navigation-menu ul li {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .navigation-menu ul li:first-child {
+            margin-left: 0;
+        }
+
+        .navigation-menu ul li a {
+            color: white;
+            /* Change the text color to white */
+            text-decoration: none;
+            padding: 5px 10px;
+            background-color: transparent;
+            /* Set the background color to transparent */
+            position: relative;
+        }
+
+        .navigation-menu ul li a:hover {
+            background-color: transparent;
+            /* Set the background color to transparent */
+        }
+
+        .navigation-menu ul li a:hover:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -2px;
+            height: 2px;
+            background-color: white;
+        }
+
+        body {
+            user-select: none;
+            /* Prevent text selection in the body of the page */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Use a modern font family */
+        }
+
+        .portfolio-section {
+            background-color: #f4f4f4;
+            padding: 50px 0;
+            margin-left: -20px;
+            margin-right: 0;
+        }
+
+        .portfolio-section h2 {
+            margin-bottom: 30px;
+        }
+
+        .portfolio-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .portfolio-item .item {
+            flex: 0 0 300px;
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #3367d6;
+        }
+
+        .portfolio-item .item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #4285f4;
+        }
+
+        .portfolio-item .item h3 {
+            margin-bottom: 10px;
+        }
+
+        .portfolio-item .item p {
+            margin-bottom: 20px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item .item.open p {
+            display: block;
+            opacity: 1;
+        }
+
+        .portfolio-item .item.open:not(:hover) {
+            transform: scale(1);
+            box-shadow: none;
+        }
+
+        #message {
+            position: fixed;
+            top: 2px;
+            /* Move the message down by 2 pixels */
+            left: 50%;
+            transform: translateX(-50%);
+            width: fit-content;
+            background-color: #33333300;
+            /* Set the background color to dark blue */
+            color: #333333;
+            text-align: center;
+            padding: 10px;
+            display: none;
+            border: 2px solid #333333;
+            border-radius: 4px;
+            animation: fadeIn 0.5s ease-in-out;
+            /* Add fade-in animation */
+            cursor: pointer;
+            font-weight: bold;
+            /* Add cursor style for clickable effect */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .footer {
+            background-color: #333333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer-text {
+            color: black;
+            /* Change the text color to black */
+        }
+
+        .content {
+            padding-bottom: 60px;
+            /* Adjust the value to accommodate the footer's height */
+        }
+
+        .bbservice-text {
+            font-size: 200px;
+            /* Adjust the font size as desired */
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            /* Add some margin to separate it from the portfolio section */
+            color: transparent;
+            /* Make the inner part of the text transparent */
+            -webkit-text-stroke: 2px gray;
+            /* Add a grey outline to the text */
+        }
+
+        .navigation-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: auto;
+            background-color: #4285f4;
+            /* Change the background color to a darker grey */
+            z-index: 2;
+            padding: 10px 20px;
+            user-select: none;
+            /* Prevent text selection in the navigation menu */
+            border-bottom-left-radius: 10px;
+            display: flex;
+            align-items: center;
+            /* Center items vertically */
+        }
+
+        .navigation-menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+            flex-grow: 1;
+            /* Allow the search bar to take up remaining space */
+        }
+
+        .navigation-menu ul li {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .navigation-menu ul li:first-child {
+            margin-left: 0;
+        }
+
+        .navigation-menu ul li a {
+            color: white;
+            /* Change the text color to white */
+            text-decoration: none;
+            padding: 5px 10px;
+            background-color: transparent;
+            /* Set the background color to transparent */
+            position: relative;
+        }
+
+        .navigation-menu ul li a:hover {
+            background-color: transparent;
+            /* Set the background color to transparent */
+        }
+
+        .navigation-menu ul li a:hover:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -2px;
+            height: 2px;
+            background-color: white;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            height: 15px;
+            width: 50x;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 25px;
+            margin-right: 5px;
+            outline: none;
+            /* Add a slight border highlight on focus */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            /* Add a subtle box shadow */
+        }
+
+        .search-bar input[type="submit"] {
+            height: 30px;
+            padding: 5px 10px;
+            background-color: #3367d6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            /* Add a smooth transition for background color */
+        }
+
+        .search-bar input[type="submit"]:hover {
+            background-color: #4285f4;
+            /* Darken the background color on hover */
+        }
+    </style>
+    <script>
+        function toggleDescription(index) {
+            var item = document.getElementById('item-' + index);
+            var description = document.getElementById('description-' + index);
+
+            // Check if the item is already open
+            var isOpen = item.classList.contains('open');
+
+            // Close all items
+            var items = document.querySelectorAll('.portfolio-item .item');
+            items.forEach(function (item) {
+                item.classList.remove('open');
+            });
+
+            // Close all descriptions
+            var descriptions = document.querySelectorAll('.portfolio-item .item p');
+            descriptions.forEach(function (desc) {
+                desc.classList.remove('open');
+            });
+
+            // Open the clicked item if it was closed
+            if (!isOpen) {
+                item.classList.add('open');
+                description.classList.add('open');
+            }
+        }
+
+        function redirectToSupport() {
+            window.location.href = 'https://discord.com/channels/1116165838127501336/1117164043464093818';
+        }
+        function searchWebsite() {
+            var searchQuery = document.getElementById('search').value;
+            // Perform search logic here
+            console.log('Searching for:', searchQuery);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="navigation-menu">
+        <ul>
+            <li><a href="User_Login.html">Admin Login</a></li>
+            <li><a href="Customer_Page.html">Customer Page</a></li>
+            <li><a href="#" onclick="redirectToSupport()">Support</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>
+                <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search...">
+                    <input type="submit" value="Search" onclick="searchWebsite()">
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1>BB Services Home Page</h1>
+        <p>This is the content of the home page.</p>
+        <div class="portfolio-section">
+            <h2>Our Featured Products</h2>
+            <div class="portfolio-item">
+                <div class="item" id="item-1" onclick="toggleDescription(1)">
+                    <h3>Rockstar Accounts</h3>
+                    <p id="description-1"> We offer cheap and reliable Rockstar Accounts. If you do not know already,
+                        Rockstar Accounts are mainly used when using a Spoofer such as RedEngine
+                    </p>
+                </div>
+                <div class="item" id="item-2" onclick="toggleDescription(2)">
+                    <h3>Project 2</h3>
+                    <p id="description-2">Phasellus auctor odio id tortor tempus, at fermentum turpis posuere. Nam vel
+                        sapien
+                        a orci finibus efficitur.</p>
+                </div>
+                <div class="item" id="item-3" onclick="toggleDescription(3)">
+                    <h3>Project 3</h3>
+                    <p id="description-3">Praesent cursus arcu non dolor eleifend, nec blandit est eleifend. Nam nec
+                        tincidunt
+                        nulla.</p>
+                </div>
+                <p class="bbservice-text">BBSERVICES</p> <!-- Add the BBSERVICES text below the portfolio section -->
+            </div>
+</body>
+
+</html>

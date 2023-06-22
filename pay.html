@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Your Website - Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #header {
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #header h1 {
+            color: #333333;
+            font-size: 36px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        #payment-form {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #payment-form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333333;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #payment-form input[type="text"],
+        #payment-form input[type="number"] {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #cccccc;
+            margin-bottom: 20px;
+            width: 300px;
+            font-size: 14px;
+        }
+
+        #payment-form button {
+            padding: 10px 20px;
+            background-color: #4285f4;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #payment-form button:hover {
+            background-color: #555555;
+        }
+    </style>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var stripe = Stripe("YOUR_STRIPE_PUBLISHABLE_KEY");
+            var elements = stripe.elements();
+
+            var cardNumberElement = elements.create("cardNumber");
+            cardNumberElement.mount("#card-number");
+
+            var cardHolderElement = elements.create("cardHolderName");
+            cardHolderElement.mount("#card-holder");
+
+            var expirationDateElement = elements.create("cardExpiry");
+            expirationDateElement.mount("#expiration-date");
+
+            var cvvElement = elements.create("cardCvc");
+            cvvElement.mount("#cvv");
+
+            var paymentForm = document.getElementById("payment-form");
+            paymentForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                stripe.createToken(cardNumberElement).then(function (result) {
+                    if (result.error) {
+                        // Display error message to the user
+                        console.log(result.error.message);
+                    } else {
+                        // Send the token to your server to process the payment
+                        var token = result.token.id;
+                        console.log(token);
+                        // Call your server-side endpoint to complete the payment process
+                        // For example, you can use AJAX or fetch to send the token to your server
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="header">
+        <h1>Payment</h1>
+    </div>
+
+    <div id="payment-form">
+        <form>
+            <label for="card-number">Card Number:</label>
+            <div id="card-number"></div>
+
+            <label for="card-holder">Card Holder:</label>
+            <div id="card-holder"></div>
+
+            <label for="expiration-date">Expiration Date:</label>
+            <div id="expiration-date"></div>
+
+            <label for="cvv">CVV:</label>
+            <div id="cvv"></div>
+
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+</body>
+
+</html>

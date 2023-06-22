@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Business Administration Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333333;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333333;
+        }
+
+        .card p {
+            margin-bottom: 5px;
+            color: #666666;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .data-placeholder {
+            display: inline-block;
+            width: 70px;
+            height: 16px;
+            background-color: #eeeeee;
+            border-radius: 5px;
+        }
+
+        .home-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .home-button,
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333333;
+            color: #ffffff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover,
+        .back-button:hover {
+            background-color: #555555;
+        }
+
+        .discord-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 50px;
+            height: 55vh;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Business Administration Dashboard</h1>
+        <div class="home-buttons">
+            <a href="home.html" class="home-button">Home</a>
+            <a href="yes.html" class="back-button">Go Back</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="card">
+            <h2>Transcripts</h2>
+            <p>Total Sales: <span id="totalSales" class="data-placeholder">Loading...</span></p>
+            <p>Today's Sales: <span id="todaySales" class="data-placeholder">Loading...</span></p>
+            <a href="#" class="button" onclick="alert('View Sales Details')">View Details</a>
+        </div>
+        <div class="card">
+            <h2>Stock</h2>
+            <p>Total Customers: <span id="totalCustomers" class="data-placeholder">Loading...</span></p>
+            <p>New Customers Today: <span id="newCustomers" class="data-placeholder">Loading...</span></p>
+            <a href="#" class="button" onclick="alert('View Customers Details')">View Details</a>
+        </div>
+        <div class="card">
+            <h2>Accounting</h2>
+            <p>Total Items: <span id="totalItems" class="data-placeholder">Loading...</span></p>
+            <p>Items Out of Stock: <span id="outOfStockItems" class="data-placeholder">Loading...</span></p>
+            <a href="accounting.html" class="button">View Details</a>
+        </div>
+    </div>
+    <div class="discord-container">
+        <iframe class="discord-widget" src="https://discord.com/widget?id=1116165838127501336&theme=dark"
+            allowtransparency="true" frameborder="0"
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    </div>
+</body>
+
+</html>
